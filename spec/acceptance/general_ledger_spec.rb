@@ -20,14 +20,14 @@ describe 'a general ledger' do
   end
 
   let(:journals_gateway) { InMemoryJournalsGateway.new }
-  let(:view_journal_entries) do
+  let(:view_journals) do
     ViewJournals.new(
         journals_gateway: journals_gateway
     )
   end
 
   it 'can view an empty general ledger' do
-    response = view_journal_entries.execute({})
+    response = view_journals.execute({})
     expect(response[:entries]).to eq([])
   end
 
@@ -38,7 +38,7 @@ describe 'a general ledger' do
     journal.entries = []
 
     journals_gateway.save(journal)
-    response = view_journal_entries.execute({})
+    response = view_journals.execute({})
     expect(response[:entries][0]).to(
       eq(
         date: '2009/01/01',

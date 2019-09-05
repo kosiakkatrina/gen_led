@@ -31,7 +31,7 @@ describe 'a general ledger' do
     expect(response[:entries]).to eq([])
   end
 
-  it 'can view a general ledger with a single journal' do
+  it 'can view a general ledger with a single journal without any entries' do
     journal = Journal.new
     journal.date = '2009/01/01'
     journal.comment = ''
